@@ -22,11 +22,11 @@ export class News extends Component {
   }
 
   async componentDidMount() {
-    fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=')
+    fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=e8023ec47f884889bb85db441e75c4ee')
     .then(response => response.json())
     .then(data => {
       if (data && data.articles) {
-        this.setNews(data.articles);
+        this.setState({ articles: data.articles });
       } else {
         console.error('Invalid API response');
       }
