@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Enigma-News/static/css/main.e6c13ad2.css",
+    "main.js": "/Enigma-News/static/js/main.467dbd4c.js",
+    "static/js/488.00f82876.chunk.js": "/Enigma-News/static/js/488.00f82876.chunk.js",
+    "index.html": "/Enigma-News/index.html",
+    "main.e6c13ad2.css.map": "/Enigma-News/static/css/main.e6c13ad2.css.map",
+    "main.467dbd4c.js.map": "/Enigma-News/static/js/main.467dbd4c.js.map",
+    "488.00f82876.chunk.js.map": "/Enigma-News/static/js/488.00f82876.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.467dbd4c.js"
+  ]
+}
