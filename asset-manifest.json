@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Enigma-News/static/css/main.e6c13ad2.css",
-    "main.js": "/Enigma-News/static/js/main.b802b592.js",
+    "main.js": "/Enigma-News/static/js/main.a34fcf1b.js",
     "static/js/488.00f82876.chunk.js": "/Enigma-News/static/js/488.00f82876.chunk.js",
     "index.html": "/Enigma-News/index.html",
     "main.e6c13ad2.css.map": "/Enigma-News/static/css/main.e6c13ad2.css.map",
-    "main.b802b592.js.map": "/Enigma-News/static/js/main.b802b592.js.map",
+    "main.a34fcf1b.js.map": "/Enigma-News/static/js/main.a34fcf1b.js.map",
     "488.00f82876.chunk.js.map": "/Enigma-News/static/js/488.00f82876.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.b802b592.js"
+    "static/js/main.a34fcf1b.js"
   ]
 }
