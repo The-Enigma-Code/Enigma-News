@@ -22,7 +22,7 @@ export class News extends Component {
   }
 
   async componentDidMount() {
-    fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=e8023ec47f884889bb85db441e75c4ee')
+    fetch('https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&apiKey=e8023ec47f884889bb85db441e75c4ee')
     .then(response => {
       if (response.ok) {
         return response.json();
