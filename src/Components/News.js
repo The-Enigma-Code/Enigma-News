@@ -23,7 +23,13 @@ export class News extends Component {
 
   async componentDidMount() {
     fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=e8023ec47f884889bb85db441e75c4ee')
-    .then(response => response.json())
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`API error: ${response.status}`);
+      }
+    })
     .then(data => {
       if (data && data.articles) {
         this.setState({ articles: data.articles });
