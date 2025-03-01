@@ -1,18 +1,8 @@
+
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 
 export class News extends Component {
-  logArticleKeys = () => {
-    if (this.state.articles.length > 0) {
-      const article = this.state.articles[0];
-      Object.keys(article).forEach(key => {
-        console.log(`${key}: ${article[key]}`);
-      });
-    } else {
-      console.log("No articles found.");
-    }
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -32,15 +22,13 @@ export class News extends Component {
         }
       })
       .then(data => {
-        if (data && data.contents) {
-          const jsonData = JSON.parse(data.contents);
-          this.setState({ articles: jsonData.articles });
+        if (data && data.articles) {
+          this.setState({ articles: data.articles, loading: false });
         } else {
           console.error('Invalid API response');
         }
       })
       .catch(error => console.error('Error fetching news:', error));
-    this.logArticleKeys();
   }
 
   render() {
