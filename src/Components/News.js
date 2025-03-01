@@ -1,0 +1,235 @@
+import React, { Component } from 'react'
+import NewsItem from './NewsItem'
+
+export class News extends Component {
+
+  articles = [
+
+    {
+      "source": {
+        "id": "politico",
+        "name": "Politico"
+      },
+      "author": "Camille von Kaenel, Annie Snider",
+      "title": "Trump says he opened California’s water. Local officials say he nearly flooded them. - POLITICO",
+      "description": "The Army Corps of Engineers moved to release massive quantities of water in Central California, panicking local officials.",
+      "url": "https://www.politico.com/news/2025/01/31/trump-california-water-00201909",
+      "urlToImage": "https://static.politico.com/4d/9b/ef7585554483b3609512e239d370/california-storms-00850.jpg",
+      "publishedAt": "2025-02-01T02:34:24Z",
+      "content": "Before the Corps ratcheted down its plan, local authorities scrambled to move equipment and warn farms about possible flooding, said Victor Hernandez, who oversees water management on one of the rive… [+6501 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Billboard"
+      },
+      "author": "Paul Grein",
+      "title": "Here Are All the Performers and Presenters at the 2025 Grammy Awards - Billboard",
+      "description": "The 2025 Grammy Awards performers and presenters at the Feb. 2 ceremony.",
+      "url": "http://www.billboard.com/music/awards/2025-grammy-awards-performers-presenters-list-1235887625/",
+      "urlToImage": "https://www.billboard.com/wp-content/uploads/2023/02/trevor-noah-2023-grammys-red-carpet-billboard-1548.jpg?w=1024",
+      "publishedAt": "2025-02-01T02:18:05Z",
+      "content": "The 67th annual Grammy Awards are here at last. A few weeks ago, the thought of an awards show in Los Angeles, where entire neighborhoods went up in flames, seemed unthinkable. But the Recording Acad… [+4531 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "New York Post"
+      },
+      "author": "Dylan Svoboda",
+      "title": "Cowboys hire Klayton Adams as offensive coordinator amid coaching shake-up - New York Post ",
+      "description": "The Cowboys have their offensive coordinator.",
+      "url": "https://nypost.com/2025/01/31/sports/cowboys-hire-klayton-adams-as-offensive-coordinator/",
+      "urlToImage": "https://nypost.com/wp-content/uploads/sites/2/2025/01/newspress-collage-nzmpay54t-1738374995593.jpg?quality=75&strip=all&1738357011&w=1024",
+      "publishedAt": "2025-02-01T02:16:00Z",
+      "content": "The Cowboys have their offensive coordinator. \r\nDallas hired Klayton Adams for the position on Friday, filling yet another coaching vacancy behind new head coach Brian Schottenheimer, according to a … [+1679 chars]"
+    },
+    {
+      "source": {
+        "id": "the-washington-post",
+        "name": "The Washington Post"
+      },
+      "author": "Eva Dou, Katrina Northrop, Lyric Li, Gerrit De Vynck",
+      "title": "China’s new AI star DeepSeek grew on more than a shoestring budget - The Washington Post",
+      "description": "The developer of the chatbot that shocked U.S. incumbents had access to Nvidia chips that its parent company providentially acquired just before a 2022 U.S. export ban.",
+      "url": "https://www.washingtonpost.com/technology/2025/01/31/deepseek-ai-china-us-nvidia/",
+      "urlToImage": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/UZHAGCKMTZZZ7MJHRR45H3MBOY.JPG&w=1440",
+      "publishedAt": "2025-02-01T02:08:58Z",
+      "content": "In 2022, a team of AI engineers in southern China working for the parent company of DeepSeek proudly unveiled a new AI supercomputerand said they were making it available free of charge to researcher… [+8670 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BBC News"
+      },
+      "author": null,
+      "title": "Venezuela frees six US men after Trump envoy meets Maduro - BBC.com",
+      "description": "The move follows talks in Caracas between the Venezuelan leader and Trump official Richard Grenell.",
+      "url": "https://www.bbc.com/news/articles/cjw4yejwlpeo",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/c55a/live/2ed97ec0-e03c-11ef-a819-277e390a7a08.jpg",
+      "publishedAt": "2025-02-01T01:58:38Z",
+      "content": "Venezuela has freed six US detainees after talks in Caracas between President Nicolás Maduro and a senior Trump administration official.\r\nThe release of the men was announced on social media by Donal… [+1539 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Variety"
+      },
+      "author": "J. Kim Murphy",
+      "title": "Trump White House Takes Aim at Selena Gomez in New Video Responding to Her Crying About Deportations - Variety",
+      "description": "In a new video shared by the White House, the Trump administration responded to Selena Gomez crying about mass deportations.",
+      "url": "https://variety.com/2025/tv/news/white-house-blasts-selena-gomez-crying-deportations-1236293484/",
+      "urlToImage": "https://variety.com/wp-content/uploads/2025/01/selena-gomez-white-house.jpg?w=1000&h=563&crop=1",
+      "publishedAt": "2025-02-01T01:31:00Z",
+      "content": "In a new video produced by the White House, the Trump administration blasted Selena Gomez for posting an Instagram video in which she filmed herself crying over deportations of undocumented immigrant… [+2383 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "MarketWatch"
+      },
+      "author": "Christine Idzelis",
+      "title": "Tech stocks have worst week in months after ‘nobody saw DeepSeek coming’ - MarketWatch",
+      "description": "‘Disrupters get disrupted shockingly fast,’ warns Rob Arnott, founder of Research Affiliates",
+      "url": "https://www.marketwatch.com/story/tech-stocks-see-worst-week-in-months-after-nobody-saw-deepseek-coming-amid-ai-mania-4de0101c",
+      "urlToImage": "https://images.mktw.net/im-48393816/social",
+      "publishedAt": "2025-02-01T01:12:00Z",
+      "content": "The S&amp;P 500s technology sector just ended its worst week since early September, after Chinese artificial-intelligence company DeepSeek seemed to startle investors perception of winners and losers… [+388 chars]"
+    },
+    {
+      "source": {
+        "id": "associated-press",
+        "name": "Associated Press"
+      },
+      "author": "THE ASSOCIATED PRESS",
+      "title": "AP photos capture a day of wrenching emotion as Israel and Hamas release hostages and prisoners - The Associated Press",
+      "description": "It was a day of wrenching emotions: Relief, joy, anger and trauma all spilled out as Hamas released a new round of hostages and Israel freed more Palestinians from its prisons.",
+      "url": "https://apnews.com/article/mideast-wars-photo-gallery-hostages-eeb1fd13f239c33f9d35b8d88d2a7034",
+      "urlToImage": "https://dims.apnews.com/dims4/default/ec14ca4/2147483647/strip/true/crop/6000x3375+0+312/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F40%2F6d%2F138547c2c33ea92410c645158022%2F5dbceabc778d4f098a06ef231d6859aa",
+      "publishedAt": "2025-02-01T00:21:00Z",
+      "content": "It was a day of wrenching emotions: Relief, joy, anger and trauma all spilled out as Hamas released a new round of hostages and Israel freed more Palestinians from its prisons.\r\nIn the latest in the … [+9015 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Financial Times"
+      },
+      "author": "Stefania Palma, Demetri Sevastopulo, Claire Jones",
+      "title": "Former Federal Reserve official accused of passing secrets to China - Financial Times",
+      "description": "Justice department alleges John Rogers accessed sensitive information including briefings and policy deliberations",
+      "url": "https://www.ft.com/content/1cf013ed-5e49-4925-acd4-3041eab6b028",
+      "urlToImage": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F3ef16b57-c97b-4196-b427-9cdf0ccf112d.jpg?source=next-barrier-page",
+      "publishedAt": "2025-02-01T00:15:15Z",
+      "content": "FT newspaper delivered Monday-Saturday, plus FT Digital Edition delivered to your device Monday-Saturday.\r\n<ul><li></li>Weekday Print Edition<li></li>FT Weekend<li></li>FT Digital Edition<li>Global n… [+105 chars]"
+    },
+    {
+      "source": {
+        "id": "fox-news",
+        "name": "Fox News"
+      },
+      "author": "Greg Norman",
+      "title": "DC plane crash investigators recover American Airlines black boxes after midair collision - Fox News",
+      "description": "The National Transportation Safety Board says it has recovered a cockpit voice recorder and flight data recorder from the American Airlines plane that collided with an Army Black Hawk helicopter near Reagan National Airport late Wednesday. Details are emergin…",
+      "url": "https://www.foxnews.com/live-news/american-airlines-plane-military-helicopter-crash-dc-airport",
+      "urlToImage": "https://livenews.foxnews.com/images/2025/01/2cfe45c122452fe181b21564233a1e4c.jpg",
+      "publishedAt": "2025-01-31T23:31:17Z",
+      "content": "U.S. military helicopter crashes like the one that took down a commercial American Airlines flight over the Potomac River in Washington, D.C., on Wednesday night are very rare, but there has been an … [+1566 chars]"
+    },
+    {
+      "source": {
+        "id": "espn",
+        "name": "ESPN"
+      },
+      "author": "Keith Jenkins",
+      "title": "Chiefs-Eagles Super Bowl history: Championship records, stats - ESPN",
+      "description": "The Philadelphia Eagles will take on the Kansas City Chiefs in the 2025 Super Bowl. Check out the tale of the tape for both teams.",
+      "url": "https://www.espn.com/nfl/story/_/id/43642559/chiefs-eagles-super-bowl-history-championship-records-stats",
+      "urlToImage": "https://a4.espncdn.com/combiner/i?img=%2Fphoto%2F2023%2F1119%2Fr1255287_1296x729_16%2D9.jpg",
+      "publishedAt": "2025-01-31T22:46:00Z",
+      "content": "Jan 31, 2025, 05:46 PM ET\r\nThe Kansas City Chiefs and Philadelphia Eagles are set to meet in Super Bowl LIX. The Eagles look to win their second Super Bowl in franchise history, while the Chiefs aim … [+2566 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BBC News"
+      },
+      "author": null,
+      "title": "DR Congo conflict: At least 700 killed since Sunday, says UN - BBC.com",
+      "description": "The UN estimates another 2,800 were injured as M23 rebels captured the eastern city of Goma.",
+      "url": "https://www.bbc.com/news/articles/c78xvgvy172o",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/3ac8/live/7153d0d0-e018-11ef-a819-277e390a7a08.jpg",
+      "publishedAt": "2025-01-31T22:07:57Z",
+      "content": "The UN says at least 700 people have been killed in intense fighting in Goma, the largest city in eastern Democratic Republic of Congo, since Sunday.\r\nUN spokesman Stéphane Dujarric said 2,800 people… [+3609 chars]"
+    },
+    {
+      "source": {
+        "id": "abc-news",
+        "name": "ABC News"
+      },
+      "author": "ABC News",
+      "title": "There's a small chance an asteroid could hit Earth within the next decade, says NASA - ABC News",
+      "description": null,
+      "url": "https://abcnews.go.com/US/small-chance-asteroid-hit-earth-decade-nasa/story?id\\\\u003d118309189",
+      "urlToImage": null,
+      "publishedAt": "2025-01-31T21:53:39Z",
+      "content": null
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Space.com"
+      },
+      "author": "Monisha Ravisetti",
+      "title": "New NASA space telescope SPHEREx to launch in February — it can do what the JWST can't - Space.com",
+      "description": "\"We are literally mapping the entire celestial sky in 102 infrared colors for the first time in humanity's history.\"",
+      "url": "https://www.space.com/space-exploration/missions/new-nasa-space-telescope-spherex-to-launch-in-february-it-can-do-what-the-jwst-cant",
+      "urlToImage": "https://cdn.mos.cms.futurecdn.net/ddUnjv3xCRL2hzmJwuCR4Y-1200-80.png",
+      "publishedAt": "2025-01-31T20:16:17Z",
+      "content": "In late February, if all goes to plan, a new character will enter NASA's space telescope epic. It's an eggshell white, conical probe named SPHEREx, which (get ready for a mouthful) stands for Spectro… [+9595 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Live Science"
+      },
+      "author": "Patrick Pester",
+      "title": "FDA approves 1st new class of opioid-free painkillers in over 20 years - Livescience.com",
+      "description": "The FDA has approved Journavx, an oral medication for treating pain that doesn't target the brain like addictive opioids.",
+      "url": "https://www.livescience.com/health/medicine-drugs/fda-approves-1st-new-class-of-opioid-free-painkillers-in-over-20-years",
+      "urlToImage": "https://cdn.mos.cms.futurecdn.net/i7hoGnwnrDRtVEQ6QemkBM-1200-80.jpg",
+      "publishedAt": "2025-01-31T19:45:05Z",
+      "content": "The Food and Drug Administration (FDA) has greenlit a new type of pain medication for the first time in more than 20 years. What's more, the new painkiller doesn't include opioids like many painkille… [+3955 chars]"
+    }
+  ]
+
+  constructor() {
+    super();
+    console.log("contructor is working");
+    this.st = {
+      article: this.articles,
+      loading: false,
+
+    }
+  }
+  render() {
+    return (
+      <div className='container my-3'>
+        <h2>Enigma News - Top HeadLines</h2>
+        <div className="row">
+
+          {this.st.article.map((element) => {
+            if (element.description !== null && element.title!==null && element.urlToImage!==null) {
+              return <div className="col-md-4" key={element.url}>
+                <NewsItem title={element.title ? element.title.slice(0, 20) : ''} description={element.description ? element.title.slice(0, 70) : ''} imgUrl={element.urlToImage} newsUrl={element.url} />
+              </div>
+            }
+              return null;
+          })}
+
+        </div>
+      </div>
+    )
+  }
+}
+
+export default News
