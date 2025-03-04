@@ -4,7 +4,7 @@
     width:20vh;
     /* border:2px solid; */
     border-radius: 100%;
-    animation: spinner 1s linear infinite;
+    animation: spinner 0.5s linear infinite;
     display: flex;
     justify-content: center;
     align-items: center;

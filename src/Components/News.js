@@ -3,46 +3,75 @@ import NewsItem from './NewsItem'
 import data from '../sample.json'
 import NoImg from '../Images/no-img.jpg'
 import '../Css/LoadingSpinner.css'
+// import { element } from 'prop-types'
 
 export class News extends Component {
- noOfNewsPerPage=3;
+ noOfNewsPerPage=2;
 
  
   constructor() {
     super();
+    this.firstPageRef = React.createRef();
     this.state = {
       articles: data.articles,
       totalResults:data.articles.length,
       loading: true,
-      page: 1,
+      page:1,
+      activePage: null,
       startIndex:0,
       endIndex:this.noOfNewsPerPage
 
     };
+    
   }
   
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.loading !== this.state.loading && this.state.loading) {
+    if (prevState.loading !== this.state.loading && this.state.loading) 
+      {
       console.log("component did Update")
       // Simulate a delay
       setTimeout(() => {
         this.setState({
           loading: false,
         });
-      }, 2000);
+      }, 500);
+    }
+    if (prevState.activePage) {
+      prevState.activePage.setAttribute('style', '');
+    }
+    if (this.state.activePage) {
+      this.state.activePage.setAttribute('style', 'position: relative; bottom: 1vh;');
     }
   }
-  componentDidMount() {
-    console.log("cdm")
-    // Simulate a delay to demonstrate the loading indicator
-    setTimeout(() => {
-      this.setState({
-        
-        loading: false,
-    
-      });
-    }, 1000);
+ // ...
+
+componentDidMount() {
+  console.log("cdm");
+  this.handleLoadingIndicator();
+  this.highlightFirstPage();
+}
+
+handleLoadingIndicator = () => {
+  setTimeout(() => {
+    this.setState({
+      loading: false,
+    });
+  }, 1000);
+};
+
+highlightFirstPage = () => { //to reset cc of first page
+  if (this.firstPageRef.current) {
+    this.firstPageRef.current.setAttribute(
+      "style",
+      "position: relative; bottom: 1vh;"
+    );
+    this.setState({
+      activePage: this.firstPageRef.current,
+    });
   }
+};
+
+// ...
   nextHandler = () => {
     this.setState({loading:true})
    
@@ -70,21 +99,32 @@ export class News extends Component {
     
   };
   pageNumberHandler = (event) => {
-    this.setState({loading:true})
- 
-    const pageNumber = parseInt(event.target.getAttribute('data-value'));
-      this.setState({
-        startIndex: (pageNumber - 1) * this.noOfNewsPerPage,
-        endIndex: pageNumber * this.noOfNewsPerPage,
-        // loading:false
-      });
-    
+    this.setState({ loading: true });
+  
+    // if (this.state.activePage) {
+    //   this.state.activePage.setAttribute('style', '');
+    // }
+  
+    const element = event.target;
+    // element.setAttribute('style', 'position: relative; bottom: 1vh;');
+  
+    this.setState({
+      activePage: element,
+      startIndex: (parseInt(event.target.getAttribute('data-value')) - 1) * this.noOfNewsPerPage,
+      endIndex: parseInt(event.target.getAttribute('data-value')) * this.noOfNewsPerPage,
+    });
   };
 
   render() {
     const buttons = [];
     for (let i = 1; i <= Math.ceil(this.state.totalResults / this.noOfNewsPerPage); i++) {
-      buttons.push(<button className='mx-1' key={i} data-value={i} onClick={this.pageNumberHandler}>{i}</button>);
+      if(i===1 && Math.ceil(this.state.totalResults / this.noOfNewsPerPage)>1){
+        buttons.push(<button className='mx-1' key={i} data-value={i} onClick={this.pageNumberHandler} ref={this.firstPageRef}>{i}</button>);
+      }
+      else{
+
+        buttons.push(<button className='mx-1' key={i} data-value={i} onClick={this.pageNumberHandler}>{i}</button>);
+      }
     }
     /**
      * CDM(componentDidMount): runs after component load , constructor > render > cdm 
