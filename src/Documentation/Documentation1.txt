@@ -1,0 +1,7 @@
+/**
+* CDM(componentDidMount): runs after component load , constructor > render > cdm
+* if state is being changed asynchronousily , this consider as mounting and cdm get invokes again
+* but if it happeing synchromousily only CDU(componentDidUpdate) will be get invoke,
+* cdu have to params (prevProps,PrevState) which can be useful to compare changes that occurs in state or props (between new state and last state)
+* cdu get invokes after render() whenever the state get changed synchronousily
+*/ 
