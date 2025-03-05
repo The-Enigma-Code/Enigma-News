@@ -8,7 +8,9 @@ import News from './Components/News';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" 
+    // style={{backgroundColor:'#212529'}}
+    >
     {/* <Temp/> */}
     <Navbar/>
     <News/>

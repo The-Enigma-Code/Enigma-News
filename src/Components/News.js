@@ -6,12 +6,13 @@ import '../Css/LoadingSpinner.css'
 // import { element } from 'prop-types'
 
 export class News extends Component {
- noOfNewsPerPage=2;
+ noOfNewsPerPage=3;
 
  
   constructor() {
     super();
     this.firstPageRef = React.createRef();
+    console.log("constructor invkoed")
     this.state = {
       articles: data.articles,
       totalResults:data.articles.length,
@@ -19,8 +20,8 @@ export class News extends Component {
       page:1,
       activePage: null,
       startIndex:0,
-      endIndex:this.noOfNewsPerPage
-
+      endIndex:this.noOfNewsPerPage,
+      // darkMode:{b}
     };
     
   }
@@ -51,7 +52,7 @@ componentDidMount() {
   this.highlightFirstPage();
 }
 
-handleLoadingIndicator = () => {
+handleLoadingIndicator = () => { //loading after component get mounted
   setTimeout(() => {
     this.setState({
       loading: false,
@@ -59,7 +60,7 @@ handleLoadingIndicator = () => {
   }, 1000);
 };
 
-highlightFirstPage = () => { //to reset cc of first page
+highlightFirstPage = () => { //to reset css of first page after mounting
   if (this.firstPageRef.current) {
     this.firstPageRef.current.setAttribute(
       "style",
@@ -73,6 +74,7 @@ highlightFirstPage = () => { //to reset cc of first page
 
 // ...
   nextHandler = () => {
+    console.log("next handler invkoed")
     this.setState({loading:true})
    
       if (this.state.endIndex < this.state.totalResults) {
@@ -83,9 +85,11 @@ highlightFirstPage = () => { //to reset cc of first page
           // loading:false
         })
       }
+      // console.log("pageNumber next:"+ this.state.page);
   };
 
   previousHandler =  () => {
+    console.log("previous handler invkoed")
     this.setState({loading:true})
 
       if(this.state.startIndex>0)
@@ -93,12 +97,13 @@ highlightFirstPage = () => { //to reset cc of first page
         startIndex: this.state.startIndex-this.noOfNewsPerPage,
         endIndex: this.state.endIndex-this.noOfNewsPerPage,
         // loading:false,
-        page: this.state.page+1,
+        page: this.state.page-1,
       })
-
+      
     
   };
   pageNumberHandler = (event) => {
+    console.log("page handler invkoed")
     this.setState({ loading: true });
   
     // if (this.state.activePage) {
@@ -112,10 +117,13 @@ highlightFirstPage = () => { //to reset cc of first page
       activePage: element,
       startIndex: (parseInt(event.target.getAttribute('data-value')) - 1) * this.noOfNewsPerPage,
       endIndex: parseInt(event.target.getAttribute('data-value')) * this.noOfNewsPerPage,
+      page: parseInt(event.target.getAttribute('data-value')) 
     });
+    // console.log("pageNumber :"+ this.state.page);
   };
 
   render() {
+    console.log("pageNumber prev:"+ this.state.page);
     const buttons = [];
     for (let i = 1; i <= Math.ceil(this.state.totalResults / this.noOfNewsPerPage); i++) {
       if(i===1 && Math.ceil(this.state.totalResults / this.noOfNewsPerPage)>1){
@@ -134,13 +142,13 @@ highlightFirstPage = () => { //to reset cc of first page
      * cdu get invokes after render() whenever the state get changed synchronousily
      */
     return (
-      <div className='container my-3'>
+      <div className='container my-3' >
         <h2 style={{textAlign:"center"}}>Enigma News - Top HeadLines</h2>
         <div className="row">
           {this.state.loading?<div className='spinnerContainer'><div className='spinner'>Loading...</div></div>:
           this.state.articles.slice(this.state.startIndex, this.state.endIndex).map((element) => {
             return <div className="col-md-4" key={element.url}>
-              <NewsItem date={element.publishedAt} title={element.title} description={element.description ? element.description.slice(0, 70) : ''} imgUrl={element.urlToImage ? element.urlToImage : NoImg} newsUrl={element.url} />
+              <NewsItem date={element.publishedAt} title={element.title} description={element.description ? element.description.slice(0, 70) : ''} imgUrl={element.urlToImage ? element.urlToImage : NoImg} newsUrl={element.url} source={element.source.name} />
             </div>
 
           })}
@@ -150,6 +158,7 @@ highlightFirstPage = () => { //to reset cc of first page
              {buttons}
             </div>
             <button disabled={this.state.endIndex>=this.state.totalResults} onClick={this.nextHandler}>Next</button>
+           {/* next/pev buttons get disabled when endIndex value reach equal or greater than total results */}
           </div>
         </div>
       </div>
