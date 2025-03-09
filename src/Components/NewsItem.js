@@ -25,7 +25,7 @@ export class NewsItem extends Component {
               aria-label={`Read more about ${title}`}>
               Read More
             </a></b></p>
-            {/* <a href={newsUrl} className="btn btn-primary btn-sm" target='_blank' rel="noreferrer">Read More</a> */}
+            
            
           </div>
         </div>

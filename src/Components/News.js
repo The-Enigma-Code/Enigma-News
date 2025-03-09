@@ -1,33 +1,27 @@
 import React, { Component } from 'react'
-import NewsItem from './NewsItem'
 import data from '../sample.json'
-import NoImg from '../Images/no-img.jpg'
+import NewsItem from './NewsItem'
+import '../Css/News.css'
 import '../Css/LoadingSpinner.css'
-// import { element } from 'prop-types'
+import NoImg from '../Images/no-img.jpg'
 
 export class News extends Component {
- noOfNewsPerPage=3;
-
- 
+  noOfNewsItemsPerPage = 3;
   constructor() {
-    super();
-    this.firstPageRef = React.createRef();
-    console.log("constructor invkoed")
+    super()
     this.state = {
       articles: data.articles,
-      totalResults:data.articles.length,
+      totalNoOfArticles: data.articles.length,
+      startIndex: 0,
+      endIndex: this.noOfNewsItemsPerPage,
+      page: 1,
       loading: true,
-      page:1,
       activePage: null,
-      startIndex:0,
-      endIndex:this.noOfNewsPerPage,
-      // darkMode:{b}
-    };
-    
+    }
   }
-  
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.loading !== this.state.loading && this.state.loading) 
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (this.state.loading) 
       {
       console.log("component did Update")
       // Simulate a delay
@@ -37,21 +31,28 @@ export class News extends Component {
         });
       }, 500);
     }
+    // console.log("cdu activePage",this.state.activePage)
     if (prevState.activePage) {
+     
+      console.log("previous:" + prevState)
       prevState.activePage.setAttribute('style', '');
+      // console.log("previous:", JSON.stringify(prevState, null, 2))//by using this
     }
     if (this.state.activePage) {
+      console.log("current:" + this.state);
       this.state.activePage.setAttribute('style', 'position: relative; bottom: 1vh;');
     }
   }
- // ...
 
-componentDidMount() {
-  console.log("cdm");
-  this.handleLoadingIndicator();
-  this.highlightFirstPage();
-}
+  componentDidMount = () => {
+    this.handleLoadingIndicator();
+    let element = document.getElementById(`${this.state.page}`);
+    this.setState({
+      activePage: element,
+    })
 
+  }
+  
 handleLoadingIndicator = () => { //loading after component get mounted
   setTimeout(() => {
     this.setState({
@@ -59,108 +60,78 @@ handleLoadingIndicator = () => { //loading after component get mounted
     });
   }, 1000);
 };
-
-highlightFirstPage = () => { //to reset css of first page after mounting
-  if (this.firstPageRef.current) {
-    this.firstPageRef.current.setAttribute(
-      "style",
-      "position: relative; bottom: 1vh;"
-    );
-    this.setState({
-      activePage: this.firstPageRef.current,
-    });
-  }
-};
-
-// ...
-  nextHandler = () => {
-    console.log("next handler invkoed")
-    this.setState({loading:true})
-   
-      if (this.state.endIndex < this.state.totalResults) {
-        this.setState({
-          startIndex: this.state.endIndex,
-          endIndex: this.state.endIndex + this.noOfNewsPerPage,
-          page: this.state.page+1,
-          // loading:false
-        })
-      }
-      // console.log("pageNumber next:"+ this.state.page);
-  };
-
-  previousHandler =  () => {
-    console.log("previous handler invkoed")
-    this.setState({loading:true})
-
-      if(this.state.startIndex>0)
-        this.setState({
-        startIndex: this.state.startIndex-this.noOfNewsPerPage,
-        endIndex: this.state.endIndex-this.noOfNewsPerPage,
-        // loading:false,
-        page: this.state.page-1,
-      })
-      
+  pagesHandler = (event) => {
     
-  };
-  pageNumberHandler = (event) => {
-    console.log("page handler invkoed")
-    this.setState({ loading: true });
-  
-    // if (this.state.activePage) {
-    //   this.state.activePage.setAttribute('style', '');
-    // }
-  
     const element = event.target;
-    // element.setAttribute('style', 'position: relative; bottom: 1vh;');
-  
+    let pageNo = parseInt(element.getAttribute('id'));
+    console.log("pageNo: " + pageNo)
     this.setState({
-      activePage: element,
-      startIndex: (parseInt(event.target.getAttribute('data-value')) - 1) * this.noOfNewsPerPage,
-      endIndex: parseInt(event.target.getAttribute('data-value')) * this.noOfNewsPerPage,
-      page: parseInt(event.target.getAttribute('data-value')) 
-    });
-    // console.log("pageNumber :"+ this.state.page);
-  };
+      endIndex: parseInt(pageNo) * this.noOfNewsItemsPerPage,
+      startIndex: (parseInt(pageNo) - 1) * this.noOfNewsItemsPerPage,
+      page: pageNo,
+      activePage: event.target,
+      loading:true
+    })
+  }
+  nextHandler = () => {
+    
+    this.setState({
+      startIndex: this.state.endIndex,
+      endIndex: this.state.endIndex + this.noOfNewsItemsPerPage,
+      page: this.state.page + 1,
+      activePage: document.getElementById(`${this.state.page + 1}`),
+      loading:true
+    })
 
+  }
+  prevHandler = () => {
+
+    this.setState({
+      startIndex: this.state.startIndex - this.noOfNewsItemsPerPage,
+      endIndex: this.state.startIndex,
+      page: this.state.page - 1,
+      activePage: document.getElementById(`${this.state.page - 1}`),
+      loading:true,
+    })
+  }
   render() {
-    console.log("pageNumber prev:"+ this.state.page);
-    const buttons = [];
-    for (let i = 1; i <= Math.ceil(this.state.totalResults / this.noOfNewsPerPage); i++) {
-      if(i===1 && Math.ceil(this.state.totalResults / this.noOfNewsPerPage)>1){
-        buttons.push(<button className='mx-1' key={i} data-value={i} onClick={this.pageNumberHandler} ref={this.firstPageRef}>{i}</button>);
-      }
-      else{
-
-        buttons.push(<button className='mx-1' key={i} data-value={i} onClick={this.pageNumberHandler}>{i}</button>);
-      }
+    let pagesButtons = [];
+    for (let i = 1; i <= Math.ceil(this.state.totalNoOfArticles / this.noOfNewsItemsPerPage); i++) {
+      pagesButtons.push(<button className='mx-1' id={`${i}`} key={i} onClick={this.pagesHandler}>{i}</button>)
     }
-    /**
-     * CDM(componentDidMount): runs after component load , constructor > render > cdm 
-     * if state is being changed asynchronousily , this consider as mounting and cdm get invokes again
-     * but if it happeing synchromousily only CDU(componentDidUpdate) will be get invoke,
-     * cdu have to params (prevProps,PrevState) which can be useful to compare changes that occurs in state or props (between new state and last state)
-     * cdu get invokes after render() whenever the state get changed synchronousily
-     */
     return (
-      <div className='container my-3' >
-        <h2 style={{textAlign:"center"}}>Enigma News - Top HeadLines</h2>
-        <div className="row">
-          {this.state.loading?<div className='spinnerContainer'><div className='spinner'>Loading...</div></div>:
-          this.state.articles.slice(this.state.startIndex, this.state.endIndex).map((element) => {
-            return <div className="col-md-4" key={element.url}>
-              <NewsItem date={element.publishedAt} title={element.title} description={element.description ? element.description.slice(0, 70) : ''} imgUrl={element.urlToImage ? element.urlToImage : NoImg} newsUrl={element.url} source={element.source.name} />
-            </div>
+      // <div className='container'>
+      //   <div className="row">
 
-          })}
-          <div className="btnCont" style={{ display: "flex", justifyContent: "space-between" }}>
-            <button disabled={this.state.startIndex<=0} onClick={this.previousHandler}>Previous</button>
-            <div>
-             {buttons}
-            </div>
-            <button disabled={this.state.endIndex>=this.state.totalResults} onClick={this.nextHandler}>Next</button>
-           {/* next/pev buttons get disabled when endIndex value reach equal or greater than total results */}
-          </div>
+      //     {
+      //       this.state.articles.slice(this.state.startIndex, this.state.endIndex).map((element) => {
+      //         return <div key={element.url} className='col-4'>
+      //           <NewsItem title={element.title} description={element.description} imgUrl={element.urlToImage} newsUrl={element.url} date={element.publishedAt} source={element.source.name} />
+      //         </div>
+      //       })
+      //     }
+      //   </div>
+
+      <div className='container my-3' >
+        <h2 style={{ textAlign: "center" }}>Enigma News - Top HeadLines</h2>
+        <div className="row">
+          {this.state.loading ? <div className='spinnerContainer'><div className='spinner'>Loading...</div></div> :
+            this.state.articles.slice(this.state.startIndex, this.state.endIndex).map((element) => {
+              return <div className="col-md-4" key={element.url}>
+                <NewsItem date={element.publishedAt} title={element.title} description={element.description ? element.description.slice(0, 70) : ''} imgUrl={element.urlToImage ? element.urlToImage : NoImg} newsUrl={element.url} source={element.source.name} />
+              </div>
+
+            })}
         </div>
+        <div className="btnCont">
+          <button onClick={this.prevHandler} disabled={this.state.startIndex <= 0}>Prev</button>
+          <div>
+            {pagesButtons}
+          </div>
+
+          <button onClick={this.nextHandler} disabled={this.state.endIndex >= this.state.totalNoOfArticles}> Next</button>
+        </div>
+
       </div>
     )
   }

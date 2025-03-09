@@ -4,6 +4,7 @@
 // import './App.css';
 import Navbar from './Components/Navbar';
 import News from './Components/News';
+// import NewsCopy from './Components/NewsCopy';
 // import Temp from './Components/Temp';
 
 function App() {
@@ -14,7 +15,9 @@ function App() {
     {/* <Temp/> */}
     <Navbar/>
     <News/>
-    </div>
+
+{/* <NewsCopy/>    */}
+ </div>
   );
 }
 
