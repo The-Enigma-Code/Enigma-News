@@ -8,7 +8,6 @@ export class NewsItem extends Component {
     const formattedDate = new Date(date).toGMTString();
     return (
       <div className='my-3' >
-
         <div className="card" style={{width:'20rem'}}>
             <div style={{}}><h5 style={
               {position:"absolute", right:"0.1vh",backgroundColor:'blue',color:'white',borderRadius:'3vh',display:'flex',alignItems:'center',justifyContent:'center',padding:'0.7vh'}
