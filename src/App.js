@@ -28,7 +28,7 @@ export const App = () => {
     setStartIndex(0);
     setEndIndex(noOfNewsItemsPerPage);
     setPage(1);
-    setActivePage(null);
+    setActivePage(document.getElementById('pg-1'));
 };
 
   return (

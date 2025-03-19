@@ -13,7 +13,7 @@ export default function PageButton(props) {
 
     const pagesHandler = (event) => {
         const element = event.target;
-        let pageNo = parseInt(element.getAttribute('dataValue'));
+        let pageNo = parseInt(element.getAttribute('data-value'));
         console.log("pageNo: " + pageNo)
       
         props.setStartIndex((parseInt(pageNo) - 1) * noOfNewsItemsPerPage);
@@ -25,7 +25,7 @@ export default function PageButton(props) {
       }
       let pagesButtons = [];
       for (let i = 1; i <= Math.ceil(noOfAritclesCateWise / noOfNewsItemsPerPage); i++) {
-        pagesButtons.push(<button className='mx-1' dataValue={i} id={`pg-${i}`} key={i} onClick={pagesHandler}>{i}</button>)
+        pagesButtons.push(<button className='mx-1' data-value={i} id={`pg-${i}`} key={i} onClick={pagesHandler}>{i}</button>)
       }
      const nextHandler = () => {
         
