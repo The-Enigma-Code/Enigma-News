@@ -25,19 +25,19 @@
    @keyframes spinner {
     0% {
       /* Initial styles */
-     border-bottom: 3px solid;
+     border-bottom: 10px dotted;
     }
     25% {
       /* Initial styles */
-     border-left: 3px solid;
+     border-left: 10px dotted;
     }
     50% {
       /* Initial styles */
-     border-top: 3px solid;
+     border-top: 10px dotted;
     }
     75% {
       /* Final styles */
-      border-right: 3px solid;
+      border-right: 10px dotted;
     }
     100% {
       /* Final styles */

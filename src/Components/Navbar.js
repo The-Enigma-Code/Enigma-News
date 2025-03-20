@@ -45,10 +45,8 @@ export const Navbar = (props) => {
               </li>
               <li className="nav-item">
                 <div>{choosenSource}</div>
-
               </li>
             </ul>
-
           </div>
         </div>
       </nav>

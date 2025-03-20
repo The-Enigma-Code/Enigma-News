@@ -30,21 +30,30 @@ const News = (props) => {
     handleLoadingIndicator();
     let element = document.getElementById(`pg-${props.page}`);
     props.setActivePage(element)
-    console.log("mount active page"+element)
+    console.log("mount active page  "+element)
   }, [])
-
+  
+  const handleLoadingIndicator = () => { //loading after component get mounted
+    setTimeout(() => {
+      props.setLoading(false);
+    },5000);
+  };
   useEffect(() => {
     if (props.loading) {
+      console.log("laoding useeffect")
       const timeoutId = setTimeout(() => {
         setLoading(false);
-      }, 500);
+      }, 1000);
       return () => clearTimeout(timeoutId); // cleanup function
     }
   }, [props.loading]);
 
   useEffect(() => {
+    console.log("active page useEffect")
+
     if (props.activePage) {
-      props.activePage.setAttribute('style', 'position: relative; bottom: 1vh;');
+      // props.activePage.setAttribute('style', 'position: relative; bottom: 1vh;');
+      props.activePage.setAttribute('style', 'position: relative; background-color:black;color:white');
     }
     return () => {
       if (props.activePage) {
@@ -53,11 +62,6 @@ const News = (props) => {
     }; // cleanup function
   }, [activePage]);
 
-  const handleLoadingIndicator = () => { //loading after component get mounted
-    setTimeout(() => {
-      props.setLoading(false);
-    }, 1000);
-  };
 
 
 
